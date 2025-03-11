@@ -25,12 +25,16 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const session = await getServerSession()
-  console.info('session', session)
+  console.info('RootLayout session:', session)
+
   return (
     <html lang="ja">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="p-4 text-blue-600">
+          token: {session?.user?.accessToken}
+        </div>
         <AuthSessionProvider session={session}>{children}</AuthSessionProvider>
       </body>
     </html>
